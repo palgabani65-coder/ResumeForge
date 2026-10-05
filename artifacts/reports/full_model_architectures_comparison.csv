@@ -1,0 +1,8 @@
+Model Architecture,Input / Representation,Train Acc,Val Acc,Test Acc,Val Macro-F1,Test Macro-F1,Overfitting Gap (Train-Val)
+Multinomial Naive Bayes,Count / BoW Features,87.46%,54.96%,60.59%,0.5114,0.5463,+32.50%
+Multinomial Naive Bayes,TF-IDF Features,87.28%,54.69%,59.52%,0.4863,0.5259,+32.59%
+Logistic Regression,TF-IDF (Regularized),86.59%,61.93%,66.22%,0.5757,0.6161,+24.66%
+Linear SVM (Calibrated),TF-IDF (Balanced Hyperplane),99.08%,67.83%,73.19%,0.6409,0.6853,+31.25%
+Ridge Classifier,TF-IDF (L2 Regularized),100.00%,69.97%,73.46%,0.6597,0.6819,+30.03%
+Dense NN (Pooled Embeddings),Pooled Dense Word Vectors (128d),100.00%,56.57%,59.52%,0.5325,0.5602,+43.43%
+Bidirectional GRU / LSTM,Token Sequences + Embeddings,94.53%,72.39%,74.26%,0.6670,0.6713,+22.15%

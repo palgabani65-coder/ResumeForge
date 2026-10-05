@@ -1,0 +1,35 @@
+{
+    "model_comparison": {
+        "Multinomial_Naive_Bayes": {
+            "val_accuracy": 0.5416,
+            "val_macro_f1": 0.4815,
+            "val_weighted_f1": 0.5202
+        },
+        "Logistic_Regression": {
+            "val_accuracy": 0.6354,
+            "val_macro_f1": 0.5952,
+            "val_weighted_f1": 0.6224
+        },
+        "Linear_SVM": {
+            "val_accuracy": 0.6836,
+            "val_macro_f1": 0.6485,
+            "val_weighted_f1": 0.6785
+        },
+        "Deep_Neural_Network_MLP": {
+            "val_accuracy": 0.5147,
+            "val_macro_f1": 0.4839,
+            "val_weighted_f1": 0.5204
+        }
+    },
+    "best_model": "Linear_SVM",
+    "best_val_macro_f1": 0.6485,
+    "test_set_evaluation": {
+        "test_samples": 373,
+        "test_top1_accuracy": 0.7453,
+        "test_top2_accuracy": 0.8499,
+        "test_top3_accuracy": 0.9223,
+        "test_top5_accuracy": 0.9571,
+        "test_macro_f1": 0.7008,
+        "test_weighted_f1": 0.7334
+    }
+}

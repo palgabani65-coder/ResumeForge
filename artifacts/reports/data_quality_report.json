@@ -1,0 +1,58 @@
+{
+    "phase": "Phase 1: Problem Understanding & Data Quality Audit",
+    "dataset_info": {
+        "file_path": "..\\Dataset\\Resume\\Resume.csv",
+        "total_records": 2484,
+        "total_columns": 4,
+        "columns_validated": [
+            "ID",
+            "Resume_str",
+            "Resume_html",
+            "Category"
+        ]
+    },
+    "category_info": {
+        "total_categories": 24,
+        "is_matching_expected": true,
+        "max_represented_category": {
+            "name": "INFORMATION-TECHNOLOGY",
+            "count": 120
+        },
+        "min_represented_category": {
+            "name": "BPO",
+            "count": 22
+        }
+    },
+    "quality_metrics": {
+        "missing_values_total": 0,
+        "duplicate_ids": 0,
+        "duplicate_resume_texts": 2,
+        "empty_resumes_count": 1,
+        "extremely_short_resumes_count": 1,
+        "encoding_artifacts": {
+            "resumes_with_non_ascii": 1929,
+            "resumes_with_html_tags": 8,
+            "resumes_with_html_entities_or_replacement": 2484
+        }
+    },
+    "text_length_statistics": {
+        "characters": {
+            "min": 21,
+            "mean": 6295.31,
+            "max": 38842
+        },
+        "words": {
+            "min": 0,
+            "mean": 811.33,
+            "max": 5190
+        }
+    },
+    "split_strategy": {
+        "type": "Stratified Shuffle Split",
+        "random_state": 42,
+        "train_samples": 1738,
+        "val_samples": 373,
+        "test_samples": 373,
+        "leakage_mitigation": "Fit vectorizers and tokenizers solely on train split in Phase 3/4"
+    }
+}

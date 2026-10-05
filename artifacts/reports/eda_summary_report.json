@@ -1,0 +1,103 @@
+{
+    "phase": "Phase 2: Exploratory Data Analysis (EDA)",
+    "dataset_overview": {
+        "total_resumes": 2484,
+        "total_categories": 24,
+        "majority_class": {
+            "name": "INFORMATION-TECHNOLOGY",
+            "count": 120,
+            "percentage": 4.83
+        },
+        "minority_class": {
+            "name": "BPO",
+            "count": 22,
+            "percentage": 0.89
+        },
+        "imbalance_ratio": 5.45
+    },
+    "length_distributions": {
+        "characters": {
+            "mean": 6295.31,
+            "median": 5886.5,
+            "std": 2769.25,
+            "min": 21,
+            "max": 38842
+        },
+        "words": {
+            "mean": 811.33,
+            "median": 757.0,
+            "std": 371.01,
+            "min": 0,
+            "max": 5190
+        }
+    },
+    "outliers": {
+        "shortest_resume": {
+            "id": 12632728,
+            "category": "BUSINESS-DEVELOPMENT",
+            "words": 0,
+            "chars": 21
+        },
+        "longest_resume": {
+            "id": 11842274,
+            "category": "PUBLIC-RELATIONS",
+            "words": 5190,
+            "chars": 35933
+        }
+    },
+    "top_ngrams": {
+        "unigrams": [
+            "management",
+            "sales",
+            "customer",
+            "business",
+            "skills",
+            "new",
+            "service",
+            "team"
+        ],
+        "bigrams": [
+            "customer service",
+            "project management",
+            "microsoft office",
+            "high school",
+            "business development",
+            "communication skills",
+            "human resources",
+            "public relations"
+        ],
+        "trigrams": [
+            "high school diploma",
+            "microsoft office suite",
+            "excellent customer service",
+            "education bachelor science",
+            "problem solving skills",
+            "human resource management",
+            "customer service representative",
+            "word excel powerpoint"
+        ]
+    },
+    "class_overlap_risks": [
+        {
+            "pair": "FINANCE vs ACCOUNTANT",
+            "risk_level": "HIGH",
+            "shared_terms": "audit, general ledger, tax, balance sheet, gaap"
+        },
+        {
+            "pair": "CONSULTANT vs INFORMATION-TECHNOLOGY",
+            "risk_level": "HIGH",
+            "shared_terms": "software, agile, architecture, client solutions"
+        },
+        {
+            "pair": "SALES vs BUSINESS-DEVELOPMENT",
+            "risk_level": "MODERATE",
+            "shared_terms": "revenue, crm, client acquisition, pipeline"
+        }
+    ],
+    "saved_figures": [
+        "..\\artifacts\\figures\\class_distribution.png",
+        "..\\artifacts\\figures\\text_length_distribution.png",
+        "..\\artifacts\\figures\\wordcloud_overall.png",
+        "..\\artifacts\\figures\\ngrams_analysis.png"
+    ]
+}

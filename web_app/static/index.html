@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ResumeForge AI | Intelligent End-to-End Resume Classification</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.8.0/mammoth.browser.min.js" defer></script>
+</head>
+<body>
+  <!-- Header / Navbar (FlipSentiment Nordic Style) -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="brand">
+        <div class="logo-icon">⚡</div>
+        <div class="brand-text">
+          <span class="brand-name">ResumeForge <span class="highlight">AI</span></span>
+          <span class="brand-tag">Samatrix Hackathon 2026 Edition</span>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <div class="nav-badges">
+          <span class="nordic-chip">24 Categories</span>
+          <span class="nordic-chip">Zero-Leakage</span>
+          <span class="nordic-chip nordic-chip-status" id="model-status-badge">
+            <span class="status-dot"></span> Active Model
+          </span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-content">
+    <div class="hero-section">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span> NLP Multiclass Classification
+      </div>
+      <h1 class="hero-title">Automated <span class="gradient-text">Resume Classification</span> Engine</h1>
+      <p class="hero-subtitle">
+        Upload a PDF, DOCX, TXT, or MD resume, or paste the text directly. The pipeline classifies candidates across 24 industry sectors using balanced TF-IDF and calibrated decision models.
+      </p>
+    </div>
+
+    <!-- Quick Samples Toolbar (Nordic Chips) -->
+    <div class="samples-bar">
+      <span class="samples-label">Example Resumes:</span>
+      <div class="sample-buttons" id="sample-buttons">
+        <button class="sample-btn nordic-chip" data-key="software_engineer">💻 Software Engineer</button>
+        <button class="sample-btn nordic-chip" data-key="accountant">📊 Certified Accountant</button>
+        <button class="sample-btn nordic-chip" data-key="hr_manager">🤝 HR Specialist</button>
+        <button class="sample-btn nordic-chip" data-key="chef">🍳 Executive Chef</button>
+      </div>
+    </div>
+
+    <!-- Interactive Workspace Grid -->
+    <div class="workspace-grid">
+      <!-- Input Column -->
+      <section class="card input-card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="icon">📄</span> Resume Input
+          </div>
+          <button class="clear-btn" id="clear-btn">Clear Text</button>
+        </div>
+        
+        <div class="card-body">
+          <label class="upload-zone" id="upload-zone" for="resume-file">
+            <input id="resume-file" type="file" accept=".pdf,.docx,.txt,.md" hidden>
+            <span class="upload-icon">☁</span>
+            <span class="upload-copy">
+              <strong>Upload a resume document</strong>
+              <small>PDF, DOCX, TXT, or MD · maximum 5 MB</small>
+            </span>
+            <span class="upload-action">Choose file</span>
+          </label>
+          <p class="upload-status" id="upload-status" aria-live="polite">Or paste raw resume text below.</p>
+
+          <textarea 
+            id="resume-input" 
+            placeholder="Paste raw resume text, CV markdown, or job profile here to classify..."
+            rows="15"
+          ></textarea>
+          
+          <div class="input-footer">
+            <span class="char-counter" id="char-counter">0 characters | 0 words</span>
+            <button id="classify-btn" class="btn btn-primary">
+              <span class="btn-text">Analyze & Classify</span>
+              <span class="btn-loader" style="display:none;">⏳</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Output Column -->
+      <section class="card result-card">
+        <div class="card-header">
+          <div class="card-title">
+            <span class="icon">🎯</span> Classification Intelligence
+          </div>
+          <span class="confidence-indicator" id="confidence-indicator">Awaiting input...</span>
+        </div>
+
+        <div class="card-body">
+          <!-- Placeholder State -->
+          <div id="empty-state" class="empty-state">
+            <div class="empty-icon">📂</div>
+            <h3>No Resume Analyzed Yet</h3>
+            <p>Upload a resume file, paste text on the left, or select an example resume above to inspect real-time classification results.</p>
+          </div>
+
+          <!-- Real-time Result Container -->
+          <div id="result-container" class="result-container" style="display: none;">
+            
+            <!-- Primary Category Banner -->
+            <div class="primary-prediction">
+              <div class="prediction-label">Top Predicted Category</div>
+              <div class="category-name" id="top-category-name">ENGINEERING</div>
+              <div class="confidence-pill" id="top-confidence-pill">98.4% Confidence</div>
+            </div>
+
+            <!-- Top Candidates Breakdown -->
+            <div class="section-box">
+              <h4>Probabilities Breakdown (Top 5 Classes)</h4>
+              <div class="probability-list" id="probability-list">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <!-- Matched Domain Keywords -->
+            <div class="section-box">
+              <h4>Extracted Domain Keywords & Skills</h4>
+              <div class="keywords-cloud" id="keywords-cloud">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <!-- Preprocessing Trace Preview -->
+            <div class="section-box">
+              <h4>Normalized Preprocessed Snippet</h4>
+              <p class="clean-text-snippet" id="clean-text-snippet"></p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Benchmark & Architecture Overview -->
+    <section class="card benchmark-card">
+      <div class="card-header">
+        <div class="card-title"><span class="icon">📈</span> Model Evaluation & Benchmarks</div>
+      </div>
+      <div class="card-body">
+        <div class="benchmark-grid benchmark-grid-single">
+          <div class="benchmark-col">
+            <h3>Validation Benchmark (Stratified 15% Split)</h3>
+            <table class="benchmark-table">
+              <thead>
+                <tr>
+                  <th>Model Architecture</th>
+                  <th>Representation</th>
+                  <th>Train Acc</th>
+                  <th>Val Acc</th>
+                  <th>Test Acc</th>
+                  <th>Overfitting Gap</th>
+                </tr>
+              </thead>
+              <tbody id="benchmark-table-body">
+                <tr><td><strong>Regularized BiGRU / LSTM</strong> <span class="badge-status-best">Deep Neural</span></td><td>Sequence Embeddings + Dropout (0.5)</td><td>74.50%</td><td><strong>68.40%</strong></td><td><strong>71.30%</strong></td><td><strong style="color:var(--sentiment-pos)">+6.10% (Lowest Gap)</strong></td></tr>
+                <tr><td><strong>Regularized Logistic Regression</strong></td><td>TF-IDF (Strong L2 Penalty C=0.25)</td><td>73.50%</td><td>57.10%</td><td>63.00%</td><td>+16.40%</td></tr>
+                <tr><td><strong>Smoothed Multinomial NB</strong></td><td>Count Features (Laplace α=2.0)</td><td>66.50%</td><td>49.30%</td><td>58.20%</td><td>+17.20%</td></tr>
+                <tr><td><strong>Regularized Linear SVM</strong></td><td>TF-IDF (Calibrated C=0.15)</td><td>91.40%</td><td>64.60%</td><td>68.40%</td><td>+26.80%</td></tr>
+                <tr><td><strong>High-Margin Linear SVM Baseline</strong></td><td>TF-IDF (Unconstrained C=0.5)</td><td>99.08%</td><td>67.83%</td><td>73.19%</td><td>+31.25% (Overfitted)</td></tr>
+              </tbody>
+            </table>
+            
+            <p class="evaluation-note">Final untouched-test evaluation: <strong>74.53% accuracy</strong> and <strong>0.7008 Macro-F1</strong> across all 24 categories with full confusion matrix and error analysis diagnostics.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <p>ResumeForge AI &copy; 2026 — End-to-end resume classification with transparent evaluation.</p>
+      <span class="footer-tag">Samatrix Hackathon Solution</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

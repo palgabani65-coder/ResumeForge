@@ -1,0 +1,72 @@
+[
+  {
+    "Model Architecture": "Multinomial Naive Bayes",
+    "Input / Representation": "Count / BoW Features",
+    "Train Acc": "87.46%",
+    "Val Acc": "54.96%",
+    "Test Acc": "60.59%",
+    "Val Macro-F1": "0.5114",
+    "Test Macro-F1": "0.5463",
+    "Overfitting Gap (Train-Val)": "+32.50%"
+  },
+  {
+    "Model Architecture": "Multinomial Naive Bayes",
+    "Input / Representation": "TF-IDF Features",
+    "Train Acc": "87.28%",
+    "Val Acc": "54.69%",
+    "Test Acc": "59.52%",
+    "Val Macro-F1": "0.4863",
+    "Test Macro-F1": "0.5259",
+    "Overfitting Gap (Train-Val)": "+32.59%"
+  },
+  {
+    "Model Architecture": "Logistic Regression",
+    "Input / Representation": "TF-IDF (Regularized)",
+    "Train Acc": "86.59%",
+    "Val Acc": "61.93%",
+    "Test Acc": "66.22%",
+    "Val Macro-F1": "0.5757",
+    "Test Macro-F1": "0.6161",
+    "Overfitting Gap (Train-Val)": "+24.66%"
+  },
+  {
+    "Model Architecture": "Linear SVM (Calibrated)",
+    "Input / Representation": "TF-IDF (Balanced Hyperplane)",
+    "Train Acc": "99.08%",
+    "Val Acc": "67.83%",
+    "Test Acc": "73.19%",
+    "Val Macro-F1": "0.6409",
+    "Test Macro-F1": "0.6853",
+    "Overfitting Gap (Train-Val)": "+31.25%"
+  },
+  {
+    "Model Architecture": "Ridge Classifier",
+    "Input / Representation": "TF-IDF (L2 Regularized)",
+    "Train Acc": "100.00%",
+    "Val Acc": "69.97%",
+    "Test Acc": "73.46%",
+    "Val Macro-F1": "0.6597",
+    "Test Macro-F1": "0.6819",
+    "Overfitting Gap (Train-Val)": "+30.03%"
+  },
+  {
+    "Model Architecture": "Dense NN (Pooled Embeddings)",
+    "Input / Representation": "Pooled Dense Word Vectors (128d)",
+    "Train Acc": "100.00%",
+    "Val Acc": "56.57%",
+    "Test Acc": "59.52%",
+    "Val Macro-F1": "0.5325",
+    "Test Macro-F1": "0.5602",
+    "Overfitting Gap (Train-Val)": "+43.43%"
+  },
+  {
+    "Model Architecture": "Bidirectional GRU / LSTM",
+    "Input / Representation": "Token Sequences + Embeddings",
+    "Train Acc": "94.53%",
+    "Val Acc": "72.39%",
+    "Test Acc": "74.26%",
+    "Val Macro-F1": "0.6670",
+    "Test Macro-F1": "0.6713",
+    "Overfitting Gap (Train-Val)": "+22.15%"
+  }
+]

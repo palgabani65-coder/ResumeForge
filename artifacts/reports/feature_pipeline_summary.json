@@ -1,0 +1,84 @@
+{
+    "phase": "Phase 3: Text Preprocessing & Feature Engineering",
+    "preprocessing": {
+        "technical_tokens_protected": [
+            "cplusplus",
+            "csharp",
+            "dotnet",
+            "nodejs",
+            "vuejs",
+            "reactjs",
+            "angularjs",
+            "springboot",
+            "cicd",
+            "powerbi",
+            "msexcel",
+            "msoffice",
+            "msword",
+            "msaccess",
+            "machinelearning",
+            "deeplearning",
+            "datascience",
+            "cloudcomputing",
+            "nlp",
+            "llm",
+            "publicrelations",
+            "businessdevelopment",
+            "humanresources",
+            "qualityassurance"
+        ],
+        "stopwords_filtered": 178,
+        "regex_steps": [
+            "Lowercase normalization",
+            "Technical term protection",
+            "HTML & entity removal",
+            "Email & phone redaction",
+            "URL stripping",
+            "Special characters cleanup",
+            "Domain-safe stopword removal",
+            "Whitespace collapse"
+        ]
+    },
+    "split_breakdown": {
+        "train_samples": 1738,
+        "val_samples": 373,
+        "test_samples": 373,
+        "train_ratio": 0.7,
+        "val_ratio": 0.15,
+        "test_ratio": 0.15,
+        "random_state": 42
+    },
+    "feature_pipeline": {
+        "type": "TfidfVectorizer",
+        "sublinear_tf": true,
+        "ngram_range": [
+            1,
+            2
+        ],
+        "max_features": 12000,
+        "vocabulary_size": 12000,
+        "matrix_shape_train": [
+            1738,
+            12000
+        ],
+        "matrix_shape_val": [
+            373,
+            12000
+        ],
+        "matrix_shape_test": [
+            373,
+            12000
+        ],
+        "sparsity_percentage": 97.0
+    },
+    "leakage_verification": {
+        "fit_on_train_only": true,
+        "zero_test_exposure": true,
+        "all_24_classes_preserved": true
+    },
+    "saved_artifacts": [
+        "..\\artifacts\\models\\tfidf_vectorizer.joblib",
+        "..\\artifacts\\models\\label_encoder.joblib",
+        "..\\artifacts\\processed_data_cache.joblib"
+    ]
+}

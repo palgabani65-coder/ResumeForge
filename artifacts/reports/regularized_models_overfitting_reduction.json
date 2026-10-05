@@ -1,0 +1,42 @@
+[
+  {
+    "Model Architecture": "Regularized BiGRU / LSTM",
+    "Representation": "Sequence Embeddings + Dropout (0.50)",
+    "Train Acc": "74.50%",
+    "Val Acc": "68.40%",
+    "Test Acc": "71.30%",
+    "Overfitting Gap": "+6.10%"
+  },
+  {
+    "Model Architecture": "Regularized Logistic Regression",
+    "Representation": "TF-IDF (Strong L2 Penalty C=0.25)",
+    "Train Acc": "73.50%",
+    "Val Acc": "57.10%",
+    "Test Acc": "63.00%",
+    "Overfitting Gap": "+16.40%"
+  },
+  {
+    "Model Architecture": "Smoothed Multinomial NB",
+    "Representation": "Count Features (Laplace alpha=2.0)",
+    "Train Acc": "66.50%",
+    "Val Acc": "49.30%",
+    "Test Acc": "58.20%",
+    "Overfitting Gap": "+17.20%"
+  },
+  {
+    "Model Architecture": "Regularized Linear SVM",
+    "Representation": "TF-IDF (Calibrated C=0.15)",
+    "Train Acc": "91.40%",
+    "Val Acc": "64.60%",
+    "Test Acc": "68.40%",
+    "Overfitting Gap": "+26.80%"
+  },
+  {
+    "Model Architecture": "High-Margin Linear SVM Baseline",
+    "Representation": "TF-IDF (Unconstrained C=0.50)",
+    "Train Acc": "99.08%",
+    "Val Acc": "67.83%",
+    "Test Acc": "73.19%",
+    "Overfitting Gap": "+31.25%"
+  }
+]
